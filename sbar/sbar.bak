@@ -6,34 +6,27 @@ sec=0
 
 # MODULES
 update_cpu () { 
-	#cpu="$(grep -o "^[^ ]*" /proc/loadavg )" 
-	read -r cputemp </sys/class/thermal/thermal_zone2/temp
-	cpu="CPU: $((cputemp/1000))°"
+	cpu="$(grep -o "^[^ ]*" /proc/loadavg )" 
 }
 
-
 update_memory () { 
-	#memory="$(free -h | sed -n "2s/\([^ ]* *\)\{2\}\([^ ]*\).*/\2/p")"
-	#free --mebi | sed -n '2{p;q}' | awk '{printf ("%2.2fGiB/%2.2fGiB\n", ($3 / 1024), ($2 / 1024))}'
-	memory="$(free -h | awk '/^Mem/ {print $3"/"$2}' | sed s/i//g)"
-
+	memory="$(free -h | sed -n "2s/\([^ ]* *\)\{2\}\([^ ]*\).*/\2/p")"
 }
 
 update_time () { 
 	time="$(date "+[   %a %d %b   ]  [   %I:%M %P   ]")" 
 }
 
+update_weather () { 
+	weather="$(curl -s "wttr.in?format=1"| sed -E "s/^(.).*\+/\1/")" 
+}
 
 update_bat () { 
 	# you might need to change the path depending on your device
 	read -r bat_status </sys/class/power_supply/BAT0/status
 	read -r bat_capacity </sys/class/power_supply/BAT0/capacity
-	#bat="$bat_status $bat_capacity%"
-	[ "$bat_status" = "Full" ] && bat="  $bat_capacity%"
-    [ "$bat_status" = "Discharging" ] && bat="  $bat_capacity%"
-    [ "$bat_status" = "Charging" ] && bat="   $bat_capacity%"
+	bat="$bat_status $bat_capacity%"
 }
-
 
 #update_vol () { 
 #	vol="$([ "$(pamixer --get-mute)" = "false" ] && printf '🔊' || printf '🔇')$(pamixer --get-volume)%"
@@ -60,7 +53,7 @@ update_backlight
 
 display () { 
 	#printf "%s\n" " $event [$weather] [$memory $cpu] [$bat] [$backlight] [$vol] $time "
-	xsetroot -name " [   $memory   ]  [    $cpu   ]  [    $bat   ]  [   $backlight   ]  $time "
+	xsetroot -name " [   $memory   ]  [    $cpu   ]  [     $bat   ]  [   $backlight   ]  $time "
 }
 
 # SIGNALLING
@@ -78,10 +71,10 @@ do
 		# to update item ever n seconds with a offset of m
 		## [ $((sec % n)) -eq m ] && udpate_item
 		[ $((sec % 5 )) -eq 0 ] && update_time 	# update time every 5 seconds
-		[ $((sec % 5)) -eq 0 ] && update_cpu 	# update cpu every 15 seconds
-		[ $((sec % 5)) -eq 0 ] && update_memory
+		[ $((sec % 15)) -eq 0 ] && update_cpu 	# update cpu every 15 seconds
+		[ $((sec % 15)) -eq 0 ] && update_memory
 		[ $((sec % 60)) -eq 0 ] && update_bat
-		[ $((sec % 5)) -eq 0 ] && update_backlight 
+		[ $((sec % 3600)) -eq 2 ] && update_weather 
 		#[ $((sec % 300)) -eq 1 ] && update_event
 
 		# how often the display updates ( 5 seconds )

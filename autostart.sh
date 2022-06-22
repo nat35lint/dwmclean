@@ -1,5 +1,5 @@
 #!/bin/sh
 nitrogen --restore &
-picom --config ~/.config/dwm/picom.conf &
+picom --config ~/.config/dwm/picom.conf --experimental-backends&
 sxhkd -c ~/.config/dwm/sxhkdrc &
-slstatus &
+sh ~/.config/dwm/sbar/sbar &

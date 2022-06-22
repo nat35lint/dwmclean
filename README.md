@@ -1,7 +1,7 @@
  I have few patches here and take note of my autostart patch 
  the script is supposed to be located in ~/.config/dwm/
  example create an autostart script move it into ~/.config/dwm/
-
+...
  the patches are 
  activetagindicatorbar
  alternativetags
@@ -12,6 +12,6 @@
  movestack
  selfrestart
  vanitygaps
-
+...
 
 the default terminal is kitty

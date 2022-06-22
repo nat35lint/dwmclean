@@ -1,0 +1,33 @@
+# for firefox
+
+super + w
+	"firefox"
+
+#brightness
+
+XF86MonBrightnessUp
+	xbacklight -inc 5
+
+XF86MonBrightnessDown
+	xbacklight -dec 5
+
+#volume
+
+XF86AudioRaiseVolume
+	amixer sset Master 5%+
+
+XF86AudioLowerVolume
+	amixer sset Master 5%-
+
+XF86AudioMute
+	amixer sset Master toggle
+
+# flameshot
+
+super + Print
+	flameshot gui
+
+# blueman
+
+super + shift + b
+	blueman-manager

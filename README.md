@@ -25,3 +25,6 @@
 ...
 
 the default terminal is kitty
+
+and there is no barstatus or patches for status on bars
+you gotta make your own

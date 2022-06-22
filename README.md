@@ -2,15 +2,25 @@
  the script is supposed to be located in ~/.config/dwm/
  example create an autostart script move it into ~/.config/dwm/
 ...
+
  the patches are 
+
  activetagindicatorbar
+
  alternativetags
+
  attachasice
+
  autostart
+
  bar-height-spacing
+
  colorbar
+
  movestack
+
  selfrestart
+
  vanitygaps
 ...
 

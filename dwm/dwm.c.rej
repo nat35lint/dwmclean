@@ -1,14 +1,6 @@
 --- dwm.c
 +++ dwm.c
-@@ -212,7 +216,6 @@ static void sigchld(int unused);
- static void spawn(const Arg *arg);
- static void tag(const Arg *arg);
- static void tagmon(const Arg *arg);
--static void tile(Monitor *);
- static void togglebar(const Arg *arg);
- static void togglefloating(const Arg *arg);
- static void toggletag(const Arg *arg);
-@@ -1678,32 +1685,6 @@ tagmon(const Arg *arg)
+@@ -1677,32 +1684,6 @@ tagmon(const Arg *arg)
  	sendmon(selmon->sel, dirtomon(arg->i));
  }
  

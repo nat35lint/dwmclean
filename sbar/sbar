@@ -31,7 +31,7 @@ update_bat () {
 	#bat="$bat_status $bat_capacity%"
 	[ "$bat_status" = "Full" ] && bat="  $bat_capacity%"
     [ "$bat_status" = "Discharging" ] && bat="  $bat_capacity%"
-    [ "$bat_status" = "Charging" ] && bat="   $bat_capacity%"
+    [ "$bat_status" = "Charging" ] && bat="  $bat_capacity%"
 }
 
 
@@ -60,6 +60,7 @@ update_backlight
 
 display () { 
 	#printf "%s\n" " $event [$weather] [$memory $cpu] [$bat] [$backlight] [$vol] $time "
+	#printf "%s\n"" [   $memory   ]  [    $cpu   ]  [    $bat   ]  [   $backlight   ]  $time "
 	xsetroot -name " [   $memory   ]  [    $cpu   ]  [    $bat   ]  [   $backlight   ]  $time "
 }
 

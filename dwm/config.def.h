@@ -29,8 +29,9 @@ static const char *colors[][3]      = {
     [SchemeInfoNorm]  = { col_gray3, "#1d2021",  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
+
 /* tagging */
-static const char *tags[] = { "", "", "", "", "" };// "6", "7", "8", "9" };
+static const char *tags[] = { "", "", "", "", "", "" }; // "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -87,12 +88,10 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "kitty", NULL };
 
 #include "movestack.c"
-#include "selfrestart.c"
-
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,		             	XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,             			XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -141,8 +140,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-    { MODKEY|ControlMask,             XK_r,      self_restart,   {0} },
 	{ MODKEY|ControlMask,             XK_x,      quit,           {0} },
+	{ MODKEY|ControlMask|ShiftMask, XK_r,      quit,           {1} }, 
 };
 
 /* button definitions */
@@ -161,3 +160,4 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
+

@@ -31,7 +31,7 @@ static const char *colors[][3]      = {
 
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "" }; // "7", "8", "9" };
+static const char *tags[] = { "", "", "", "", "", "" }; // "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -140,8 +140,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ControlMask,             XK_x,      quit,           {0} },
-	{ MODKEY|ControlMask|ShiftMask, XK_r,      quit,           {1} }, 
+	{ MODKEY|ControlMask,           XK_x,      quit,           {0} },
+	{ MODKEY|ControlMask, 			XK_r,      quit,           {1} }, 
 };
 
 /* button definitions */

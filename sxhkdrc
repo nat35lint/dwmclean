@@ -31,3 +31,8 @@ super + Print
 
 super + shift + b
 	blueman-manager
+
+# i3lock
+
+super + shift + c
+	i3lock -c "#32302f"

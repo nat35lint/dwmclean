@@ -11,8 +11,22 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
 	xbacklight -dec 5
 
+alt + a
+	xbacklight -inc 5
+alt + s
+	xbacklight -dec 5
+
 #volume
 
+alt + shift + a
+	amixer sset Master 5%+
+
+alt + shift + s
+	amixer sset Master 5%-
+
+alt + shift + x
+	amixer sset Master toggle
+	
 XF86AudioRaiseVolume
 	amixer sset Master 5%+
 

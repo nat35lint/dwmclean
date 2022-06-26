@@ -41,6 +41,9 @@ XF86AudioMute
 super + Print
 	flameshot gui
 
+alt + p
+	flameshot gui
+	
 # blueman
 
 super + shift + b
@@ -50,3 +53,11 @@ super + shift + b
 
 super + shift + c
 	i3lock -c "#32302f"
+
+# shutdown and reboot
+
+super + ctrl + shift + x
+	systemctl poweroff
+
+super + ctrl + shift + r 
+	systemctl reboot

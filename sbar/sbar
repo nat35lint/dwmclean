@@ -7,7 +7,7 @@ sec=0
 # MODULES
 update_cpu () { 
 	#cpu="$(grep -o "^[^ ]*" /proc/loadavg )" 
-	read -r cputemp </sys/class/thermal/thermal_zone2/temp
+	read -r cputemp </sys/class/thermal/thermal_zone4/temp
 	cpu="CPU: $((cputemp/1000))°"
 }
 

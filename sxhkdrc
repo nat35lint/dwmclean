@@ -36,6 +36,23 @@ XF86AudioLowerVolume
 XF86AudioMute
 	amixer sset Master toggle
 
+# pause and play songs
+
+alt + q
+	playerctl pause
+
+alt + w
+	playerctl play
+
+alt + shift + q
+	playerctl next
+
+alt + shift + w
+	playerctl previous
+
+alt + z
+	playerctl stop
+
 # flameshot
 
 super + Print
@@ -61,3 +78,4 @@ super + ctrl + shift + x
 
 super + ctrl + shift + r 
 	systemctl reboot
+

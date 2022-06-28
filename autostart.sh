@@ -5,5 +5,6 @@ sxhkd -c ~/.config/dwm/sxhkdrc &
 sh ~/.config/dwm/sbar/sbar &
 lxsession $
 # MPD daemon start (if no other user instance exists)
-[ ! -s ~/.config/mpd/pid ] && mpd $
+[ ! -s ~/.config/mpd/pid ] && mpd $ &
+mpDris2 &
 

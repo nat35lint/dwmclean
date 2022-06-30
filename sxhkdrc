@@ -3,6 +3,9 @@
 super + w
 	"firefox"
 
+super + shift + w
+    "qutebrowser"
+
 #brightness
 
 XF86MonBrightnessUp
@@ -39,16 +42,16 @@ XF86AudioMute
 # pause and play songs
 
 alt + q
-	playerctl pause
+	playerctl play-pause
 
 alt + w
-	playerctl play
+	playerctl --player=mpd play-pause
 
 alt + shift + q
-	playerctl next
+	playerctl --player=mpd previous
 
 alt + shift + w
-	playerctl previous
+	playerctl --player=mpd next
 
 alt + z
 	playerctl stop

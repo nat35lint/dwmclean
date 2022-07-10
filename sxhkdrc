@@ -14,20 +14,20 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
 	xbacklight -dec 5
 
-alt + a
+shift + k
 	xbacklight -inc 5
-alt + s
+shift + j
 	xbacklight -dec 5
 
 #volume
 
-alt + shift + a
+shift + h
 	amixer sset Master 5%+
 
-alt + shift + s
+shift + l
 	amixer sset Master 5%-
 
-alt + shift + x
+shift + x
 	amixer sset Master toggle
 	
 XF86AudioRaiseVolume
@@ -82,3 +82,10 @@ super + ctrl + shift + x
 super + ctrl + shift + r 
 	systemctl reboot
 
+# typing test
+alt + t
+    kitty -e typioca
+
+# file managerr
+alt + f
+    pcmanfm

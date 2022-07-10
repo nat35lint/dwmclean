@@ -1,3 +1,0 @@
-#!/bin/bash
-xmodmap -e "keycode 62 = BackSpace"
-xmodmap -e "keycode 22 = Shift_L"

@@ -5,14 +5,10 @@ printf "$$" > ~/.cache/pidofbar
 sec=0
 
 # MODULES
-update_cputemp () { 
+update_cpu () { 
 	#cpu="$(grep -o "^[^ ]*" /proc/loadavg )" 
 	read -r cputemp </sys/class/thermal/thermal_zone4/temp
-	cputemp="CPU: $((cputemp/1000))°"
-}
-
-update_cpu () {
-    cpu="$(top -b -n2 -p 1 | fgrep "Cpu(s)" | tail -1 | awk -F'id,' -v prefix="$prefix" '{ split($1, vs, ","); v=vs[length(vs)]; sub("%", "", v); printf "%s%.1f%%\n", prefix, 100 - v }')"
+	cpu="CPU: $((cputemp/1000))°"
 }
 
 
@@ -76,7 +72,7 @@ update_mute
 display () { 
 	#printf "%s\n" " $event [$weather] [$memory $cpu] [$bat] [$backlight] [$vol] $time "
 	#printf "%s\n"" [   $memory   ]  [    $cpu   ]  [    $bat   ]  [   $backlight   ]  $time "
-    xsetroot -name " [   $memory   ]  [   $cpu   ]  [    $cputemp   ]  [    $bat   ]  [   $backlight   ]  [    $vol [  $mute   ]  $time "
+    xsetroot -name " [   $memory   ]  [    $cpu   ]  [    $bat   ]  [   $backlight   ]  [    $vol [  $mute   ]  $time "
 }
 
 # SIGNALLING
@@ -94,16 +90,17 @@ do
 		# to update item ever n seconds with a offset of m
 		## [ $((sec % n)) -eq m ] && udpate_item
 		[ $((sec % 5 )) -eq 0 ] && update_time 	# update time every 5 seconds
-		[ $((sec % 10)) -eq 0 ] && update_cputemp 	# update cpu every 15 seconds
-        [ $((sec % 5)) -eq 0 ] && update_cpu
-		[ $((sec % 10)) -eq 1 ] && update_memory
-		[ $((sec % 15)) -eq 2 ] && update_bat
-		[ $((sec % 3)) -eq 3 ] && update_backlight 
+		[ $((sec % 1)) -eq 0 ] && update_cpu 	# update cpu every 15 seconds
+		[ $((sec % 3)) -eq 0 ] && update_memory
+		[ $((sec % 15)) -eq 0 ] && update_bat
+		[ $((sec % 3)) -eq 0 ] && update_backlight 
+		[ $((sec % 1)) -eq 0 ] && update_freq 
 		#[ $((sec % 300)) -eq 1 ] && update_event
-        [ $((sec % 3)) -eq 0 ] && update_vol
-        [ $((sec % 3)) -eq 0 ] && update_mute
+        [ $((sec % 1)) -eq 0 ] && update_vol
+
+        [ $((sec % 1)) -eq 0 ] && update_mute
 		# how often the display updates ( 5 seconds )
-		[ $((sec % 1 )) -eq 0 ] && display
+		[ $((sec % 3 )) -eq 0 ] && display
 		sec=$((sec + 1))
 	}
 done 
